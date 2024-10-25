@@ -11,7 +11,7 @@ pipeline {
         stage('Salma - Login to Dockerhub') {
             steps {
                 script {
-                    docker.withRegistry('https://index.docker.io/v1/', 'usalma88') {
+                    docker.withRegistry('https://index.docker.io/v1/', 'dockerhub-credentials-id') {
                         echo 'Logged in to Docker Hub'
                     }
                 }
@@ -20,7 +20,7 @@ pipeline {
         stage('Salma - Push image to Dockerhub') {
             steps {
                 script {
-                    docker.withRegistry('https://index.docker.io/v1/', 'usalma88') {
+                    docker.withRegistry('https://index.docker.io/v1/', 'dockerhub-credentials-id') {
                         docker.image("salma-image:${env.BUILD_ID}").push()
                     }
                 }
