@@ -4,7 +4,8 @@ pipeline {
         stage('Salma - Build Docker Image') {
             steps {
                 script {
-                    docker.build("salma-image:${env.BUILD_ID}")
+                    // Build the image with the full repository name
+                    docker.build("usalma88/salma-image:${env.BUILD_ID}")
                 }
             }
         }
@@ -21,7 +22,8 @@ pipeline {
             steps {
                 script {
                     docker.withRegistry('https://index.docker.io/v1/', 'dockerhub-credentials-id') {
-                        docker.image("salma-image:${env.BUILD_ID}").push()
+                        // Push the image with the full repository name
+                        docker.image("usalma88/salma-image:${env.BUILD_ID}").push()
                     }
                 }
             }
